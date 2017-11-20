@@ -6,23 +6,47 @@ class ListBooks extends React.Component {
         super(props);
         this.state = {
             books: [],
-        }; 
+        };
     }
+
     componentDidMount() {
-        Axios.get('http://localhost:8080/api/books')
+        var url = 'http://localhost:3000/api/livros';
+        Axios.get(url)
             .then((response) => {
                 console.log(response.data);
                 console.log(response.status);
-                this.setState({books: response.data._embedded.books})
+                this.setState({books: response.data})
             });
     }
+
+    deleteBook(id) {
+        var url = 'http://localhost:3000/api/livros/' + id;
+
+        Axios.delete(url)
+        .then(function (response) {
+            console.log(response.data);
+            console.log(response.status);
+            location.reload();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     render () {
         return (
             <div>
-                <h2>Lista de Livros</h2>
+                <h2>Book List</h2>
                 {this.state.books.map((book) =>
-                    <p><b>Título:</b>{book.title} <b>Autor:</b>{book.author} </p> 
-                )} 
+                    <p>
+                        <b>Title:</b>{book.titulo}
+                        <b>Author:</b>{book.autor}
+                        <button type="button"
+                                onClick={this.deleteBook.bind(this, book._id)}>
+                                Delete
+                        </button>
+                    </p>
+                )}
             </div>
         );
     }

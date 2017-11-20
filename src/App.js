@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Hello from  './components/hello.js';
 import ListBooks from './components/listbooks.js';
 import FormBooks from './components/formbooks.js';
 
@@ -11,12 +10,8 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Book App</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Hello name="Leandro Abreu de Souza" />        
         <FormBooks />
         <ListBooks />
       </div>

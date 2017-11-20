@@ -5,48 +5,50 @@ class FormBooks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            author: '',
-        }; 
+            titulo: '',
+            autor: '',
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handleAuthorChance = this.handleAuthorChance.bind(this);
+        this.handleTituloChange = this.handleTituloChange.bind(this);
+        this.handleAutorChance = this.handleAutorChance.bind(this);
     }
-    handleTitleChange(event) {
-        this.setState({title: event.target.value});
+    handleTituloChange(event) {
+        this.setState({titulo: event.target.value});
     }
-    handleAuthorChance(event) {
-        this.setState({author: event.target.value});
+    handleAutorChance(event) {
+        this.setState({autor: event.target.value});
     }
-    handleSubmit(event) {    
+    handleSubmit(event) {
 
         var data = {
-            title: this.state.title,
-            author: this.state.author 
+            titulo: this.state.titulo,
+            autor: this.state.autor
         }
 
-        Axios.post('http://localhost:8080/api/books', data)
+        var url = 'http://localhost:3000/api/livros';
+
+        Axios.post(url, data)
         .then(function (response) {
             console.log(response);
         })
         .catch(function (error) {
             console.log(error);
         });
-        
+
     }
     render () {
         return (
             <div>
-                <h2>Novo Livro</h2>
+                <h2>New Book</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Title:
-                        <input type="text" value={this.state.title} onChange={this.handleTitleChange} />
+                        <input type="text" value={this.state.titulo} onChange={this.handleTituloChange} />
                     </label>
                     <br/><br/>
                     <label>
                         Author:
-                        <input type="text" value={this.state.author} onChange={this.handleAuthorChance} />
+                        <input type="text" value={this.state.autor} onChange={this.handleAutorChance} />
                     </label>
                     <br/><br/>
                     <input type="submit" name="" value="Save" />
