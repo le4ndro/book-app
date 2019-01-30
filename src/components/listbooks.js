@@ -10,7 +10,7 @@ class ListBooks extends React.Component {
     }
 
     componentDidMount() {
-        var url = 'http://localhost:3000/api/livros';
+        var url = 'http://localhost:3001/api/livro';
         Axios.get(url)
             .then((response) => {
                 console.log(response.data);
@@ -20,7 +20,7 @@ class ListBooks extends React.Component {
     }
 
     deleteBook(id) {
-        var url = 'http://localhost:3000/api/livros/' + id;
+        var url = 'http://localhost:3001/api/livro/' + id;
 
         Axios.delete(url)
         .then(function (response) {

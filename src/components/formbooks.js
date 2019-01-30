@@ -25,7 +25,7 @@ class FormBooks extends React.Component {
             autor: this.state.autor
         }
 
-        var url = 'http://localhost:3000/api/livros';
+        var url = 'http://localhost:3001/api/livro';
 
         Axios.post(url, data)
         .then(function (response) {
